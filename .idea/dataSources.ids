@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="mysql" product="MySQL" version="5.1.47-community" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.18 ( Revision: tonci.grgin@oracle.com-20110930151701-jfj14ddfq48ifkfq )" uuid="9935e838-a020-43f2-a5d0-4f8c6bbc0770">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://localhost:3306/task_list</jdbc-url>
+    <user-name>admin</user-name>
+    <schema-pattern>task_list.*</schema-pattern>
+    <default-schemas>task_list.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.18-bin.jar!/</url>
+      </library>
+      <library>
+        <url>file://$PROJECT_DIR$/lib/mysql-connector-license.txt</url>
+      </library>
+    </libraries>
+    <table name="profiles" schema="" catalog="task_list" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="email" sqlType="VARCHAR" length="45" precision="0" nullable="false" jdbcType="12" />
+      <column name="password" sqlType="VARCHAR" length="45" precision="0" nullable="false" jdbcType="12" />
+      <column name="name" sqlType="VARCHAR" length="45" precision="0" nullable="false" jdbcType="12" />
+      <primary-key name="PRIMARY" columns="id" />
+      <index name="name" unique="true" columns="name" />
+    </table>
+    <table name="projects" schema="" catalog="task_list" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="name" sqlType="VARCHAR" length="45" precision="0" nullable="false" jdbcType="12" />
+      <column name="description" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1" />
+      <primary-key name="PRIMARY" columns="id" />
+    </table>
+    <table name="tasks" schema="" catalog="task_list" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true" />
+      <column name="description" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="true" jdbcType="-1" />
+      <column name="state" sqlType="CHAR" length="11" precision="0" nullable="false" jdbcType="1" def="J25ldyc=" />
+      <column name="creator_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="owner_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <column name="project_id" sqlType="INT UNSIGNED" length="10" precision="0" nullable="false" jdbcType="4" />
+      <primary-key name="PRIMARY" columns="id" />
+      <foreign-key name="tasks_ibfk_1" columns="project_id" ref-table="projects" ref-schema="" ref-catalog="task_list" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2" />
+      <index name="FK_tasks_users_2" unique="false" columns="owner_id" />
+      <index name="FK_tasks_users_1" unique="false" columns="creator_id" />
+    </table>
+  </data-source>
+</component>

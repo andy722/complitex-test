@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+    <title>
+        <wicket:message key="registration_page.title"/>
+    </title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/custom.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<!-- Top page panel, common to all pages. -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <wicket:link>
+                <a class="brand" href=".">
+                    <wicket:message key="bar.brand.name"/>
+                </a>
+            </wicket:link>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <div class="login-form">
+                <h2>
+                    <wicket:message key="registration_form.title"/>
+                </h2>
+
+                <!-- Placeholder for error messages -->
+                <!--suppress WicketForgeHtmlIdInspection -->
+                <span wicket:id="feedback"></span>
+
+                <form wicket:id="registration_form" action="">
+                    <fieldset>
+                        <div class="clearfix">
+                            <label for="username">
+                                <wicket:message key="registration_form.username.label"/>
+                            </label>
+                            <input id="username" wicket:id="username" type="text"
+                                   wicket:message="placeholder:registration_form.username" maxlength="15">
+                        </div>
+                        <div class="clearfix">
+                            <label for="email">
+                                <wicket:message key="registration_form.email.label"/>
+                            </label>
+                            <input id="email" wicket:id="email" required type="email" wicket:message="placeholder:registration_form.email">
+                        </div>
+                        <div class="clearfix">
+                            <label for="password">
+                                <wicket:message key="registration_form.password.label"/>
+                            </label>
+                            <input id="password" wicket:id="password" type="password" wicket:message="placeholder:registration_form.password">
+                        </div>
+                        <button class="btn primary" type="submit">
+                            <wicket:message key="registration_form.signup"/>
+                        </button>
+                    </fieldset>
+                </form> <!-- /registration_form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Make the first input field focused on load. -->
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('username').focus();
+    };
+</script>
+
+
+</body>
+</html>

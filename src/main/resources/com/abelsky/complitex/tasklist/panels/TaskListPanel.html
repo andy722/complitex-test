@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+
+    <style type="text/css">
+        .add-task {
+            visibility: hidden;
+        }
+    </style>
+
+    <!-- Modal window for creating new tasks. -->
+    <div id="addTaskModal" class="modal hide fade"
+         tabindex="-1" role="dialog"
+         aria-labelledby="addTaskModalLabel" aria-hidden="true">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="addTaskModalLabel">
+                <wicket:message key="task_list.add.title"/>
+            </h3>
+        </div>
+
+        <div class="modal-body">
+            <form id="newTaskForm" wicket:id="newTaskForm">
+                <!-- Placeholder for error messages. -->
+                <span wicket:id="newTaskFeedback"></span>
+
+                <label for="taskName">
+                    <wicket:message key="task_list.add.name.label"/>
+                </label>
+                <input id="taskName" wicket:id="description"
+                       class="clearfix span12" type="text"
+                       wicket:message="placeholder:task_list.add.name"
+                       maxlength="50"/>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">
+                <wicket:message key="task_list.add.cancel"/>
+            </button>
+            <button wicket:id="newTaskSubmit" id="newTaskSubmit" class="btn btn-primary">
+                <wicket:message key="task_list.add.add"/>
+            </button>
+        </div>
+    </div> <!-- /modal -->
+
+    <script type="text/javascript">
+        // Focus on the first input field when 'Add task' pops up.
+        $j = jQuery.noConflict();
+        $j('#addTaskModal').on('shown', function() {
+            $j("#taskName").focus();
+        });
+
+        // Support 'Enter' in the task name input.
+        $j('#taskName').keypress( function( e ) {
+            var code = e.keyCode || e.which;
+            if (code === 13) {
+                $j('#newTaskSubmit').click();
+                e.preventDefault();
+                return false;
+            }
+        })
+    </script>
+
+    <div class="span9 well sidebar-nav pull-right task-selector" wicket:id="tasksWrapper">
+        <script type="text/javascript">
+            // Make tool buttons (add/delete task) visible only if mouse is over the projects panel.
+            $j = jQuery.noConflict();
+            $j(".task-selector").hover(function () {
+                if ($j('#projects-list').children().size() > 1) {
+                    $j(".add-task").css({visibility:"visible", outline: 0});
+                }
+            }, function () {
+                $j(".add-task").css({visibility:"hidden"});
+            });
+        </script>
+
+        <ul id="task-list" class="nav nav-list">
+            <li class="nav-header">
+                <wicket:message key="task_list.tasks"/>
+
+                <!-- 'Add task' button -->
+                <a href="#addTaskModal" class="pull-right btn-mini add-task" data-toggle="modal"
+                   wicket:message="title:task_list.add.tooltip">
+
+                    <span class="">
+                        <i class="icon-plus"></i>
+                    </span>
+                </a>
+            </li>
+
+            <!-- List of tasks -->
+            <li wicket:id="tasks" class="task">
+                <a href="#">
+                    <span wicket:id="task_name" wicket:message="title:task_list.name.tooltip">
+                        [[Task name]]
+                    </span>
+                    <span wicket:id="state" class="label" wicket:message="title:task_list.state.tooltip">
+                        [[State]]
+                    </span>
+                    <span wicket:id="owner" class="label" wicket:message="title:task_list.owner.tooltip">
+                        [[Owner name]]
+                    </span>
+
+                    <!-- Script placeholder for showing/hiding 'Delete task' button -->
+                    <script type="text/javascript" wicket:id="hoverSupport">
+                        //noinspection BadExpressionStatementJS
+                        [[script]]
+                    </script>
+
+                    <!-- 'Delete task' button -->
+                    <span class="pull-right remove">
+                        <span wicket:id="delete" class="" style="visibility: hidden"
+                              wicket:message="title:task_list.delete.tooltip">
+                            <i class="icon-remove"></i>
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Page selector -->
+        <span wicket:id="navigator" class="span12" style="text-align: center"></span>
+    </div>
+
+    <!-- Search filter -->
+    <div class="span9 sidebar-nav pull-right">
+        <form class="pull-right">
+            <!--suppress HtmlFormInputWithoutLabel -->
+            <input wicket:id="filter" type="text" class="search-query"
+                   wicket:message="placeholder:task_list.search,title:task_list.search.title"
+                   maxlength="30">
+        </form>
+    </div>
+</wicket:panel>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+
+<head>
+    <title>
+        <wicket:message key="login_page.title"/>
+    </title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/custom.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+<!-- Top page panel, common to all pages. -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+
+            <wicket:link>
+                <a class="brand" href=".">
+                    <wicket:message key="bar.brand.name"/>
+                </a>
+            </wicket:link>
+
+            <div class="nav-collapse collapse">
+                <p class="navbar-text pull-right">
+                    <wicket:link>
+                        <a href="/com/abelsky/complitex/tasklist/pages/RegistrationPage.html" class="navbar-link">
+                            <wicket:message key="login_form.register"/>
+                        </a>
+                    </wicket:link>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <div class="login-form">
+                <h2>
+                    <wicket:message key="login_form.title"/>
+                </h2>
+
+                <!-- Placeholder for error messages -->
+                <span wicket:id="feedback"></span>
+
+                <form wicket:id="login_form" action="">
+                    <fieldset>
+                        <div class="clearfix">
+                            <!--suppress HtmlFormInputWithoutLabel -->
+                            <input wicket:id="username" id="username" type="text" wicket:message="placeholder:login_form.username">
+                        </div>
+                        <div class="clearfix">
+                            <!--suppress HtmlFormInputWithoutLabel -->
+                            <input wicket:id="password" type="password" wicket:message="placeholder:login_form.password">
+                        </div>
+                        <button class="btn primary" type="submit">
+                            <wicket:message key="login_form.signin"/>
+                        </button>
+                    </fieldset>
+                </form>
+            </div> <!-- /login-form -->
+        </div>
+    </div>
+</div>
+
+<!-- Make username input field focused on load. -->
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('username').focus();
+    };
+</script>
+
+</body>
+</html>

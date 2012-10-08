@@ -1,0 +1,42 @@
+insert into profiles (id, name, email, password) values(1, 'andy', 'andy@abelsky.com', md5('andy'));
+insert into profiles (id, name, email, password) values(2, 'wombat', 'wombat@sea.com', md5('wombat'));
+insert into profiles (id, name, email, password) values(3, 'grizzly', 'grizzly@forest.com', md5('grizzly'));
+insert into profiles (id, name, email, password) values(4, 'bear', 'grizzly@forest.com', md5('bear'));
+
+insert into projects (id, name, description) values(1, 'Watching Bruce Willis movies', 'An attempt to watch all of the Bruce Willis movies');
+
+insert into tasks (description, creator_id, owner_id, project_id) values ('The First Deadly Sin', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('A Guru Comes', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Verdict', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Blind Date', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Return of Bruno', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Sunset', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Die Hard', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('In Country', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Look Who''s Talking', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Die Hard 2', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Look Who''s Talking Too', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Bonfire of the Vanities', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Mortal Thoughts', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Hudson Hawk', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Billy Bathgate', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Last Boy Scout', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Player', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Death Becomes Her', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Loaded Weapon 1', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Striking Distance', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('North', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Color of Night', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Pulp Fiction', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Die Hard with a Vengeance', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('UnNormal', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Four Rooms', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('12 Monkeys', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Last Man Standing', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Beavis and Butt-head Do America', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Fifth Element', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Jackal', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Mercury Rising', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('Armageddon', 1, 1, 1);
+insert into tasks (description, creator_id, owner_id, project_id) values ('The Siege', 1, 1, 1);
+

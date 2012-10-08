@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<wicket:panel xmlns:wicket="http://wicket.apache.org">
+
+    <style type="text/css">
+        .tool-buttons, .delete-buttons {
+            visibility: hidden;
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3 well sidebar-nav project-selector">
+
+                <script type="text/javascript">
+                    // Make tool buttons (add/delete project) visible only if mouse is over the projects panel.
+                    $j = jQuery.noConflict();
+                    $j(".project-selector").hover(function () {
+                        $j(this).find(".tool-buttons").css({visibility:"visible", outline: 0});
+                    }, function () {
+                        $j(this).find(".tool-buttons").css({visibility:"hidden"});
+                    });
+                </script>
+
+                <!-- Modal window for creating new projects. -->
+                <div id="addProjectModal" class="modal hide fade"
+                     tabindex="-1" role="dialog"
+                     aria-labelledby="addProjectModalLabel" aria-hidden="true">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 id="addProjectModalLabel">
+                            <wicket:message key="projects_panel.add.title"/>
+                        </h3>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="newProjectForm" wicket:id="newProjectForm">
+                            <!-- Placeholder for error messages -->
+                            <span wicket:id="newProjectFeedback"></span>
+
+                            <label for="name">
+                                <wicket:message key="projects_panel.add.name.label"/>
+                            </label>
+                            <input id="name" wicket:id="name"
+                                   class="clearfix span12" type="text"
+                                   wicket:message="placeholder:projects_panel.add.name"
+                                   maxlength="15"/>
+
+                            <label for="description">
+                                <wicket:message key="projects_panel.add.description.label"/>
+                            </label>
+                            <textarea id="description" wicket:id="description"
+                                      class="clearfix span12" rows=3
+                                      wicket:message="placeholder:projects_panel.add.description">
+                            </textarea>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal">
+                            <wicket:message key="projects_panel.add.cancel"/>
+                        </button>
+                        <button wicket:id="newProjectSubmit" id="newProjectSubmit" class="btn btn-primary">
+                            <wicket:message key="projects_panel.add.add"/>
+                        </button>
+                    </div>
+                </div>  <!-- /modal -->
+
+                <script type="text/javascript">
+                    // Focus on the first input field when 'Add project' pops up.
+                    $j('#addProjectModal').on('shown', function() {
+                        $j("#name").focus();
+                    });
+
+                    // Support 'Enter' in the task name input.
+                    $j('#name').keypress( function( e ) {
+                        var code = e.keyCode || e.which;
+                        if (code === 13) {
+                            $j('#newProjectSubmit').click();
+                            e.preventDefault();
+                            return false;
+                        }
+                    })
+                </script>
+
+                <!--suppress WicketForgeHtmlIdInspection -->
+                <div wicket:id="tabs-container">
+                    <ul id="projects-list" class="nav nav-list">
+                        <li class="nav-header">
+                            <wicket:message key="projects_panel.projects"/>
+
+                            <!-- 'Add project' button -->
+                            <a href="#addProjectModal" class="pull-right btn-mini tool-buttons" data-toggle="modal"
+                               wicket:message="title:projects_list.add.tooltip">
+                                <span class="">
+                                    <i class="icon-plus"></i>
+                                </span>
+                            </a>
+                        </li>
+
+                        <!-- List of projects -->
+                        <!--suppress WicketForgeHtmlIdInspection -->
+                        <li wicket:id="tabs">
+                            <!--suppress WicketForgeHtmlIdInspection -->
+                            <a href="#" wicket:id="link">
+                                <!--suppress WicketForgeHtmlIdInspection -->
+                                <span wicket:id="title" wicket:message="title:projects_list.title.tooltip">[[Project name]]</span>
+
+                                <!-- Script placeholder for showing/hiding 'Delete project' button -->
+                                <!--suppress WicketForgeHtmlIdInspection -->
+                                <script type="text/javascript" wicket:id="hoverSupport">
+                                    //noinspection BadExpressionStatementJS
+                                    [[script]]
+                                </script>
+
+                                <!-- 'Delete project' button -->
+                                <span class="pull-right remove">
+                                    <!--suppress WicketForgeHtmlIdInspection -->
+                                    <span wicket:id="delete" class="" style="visibility: hidden"
+                                          wicket:message="title:projects_list.delete.tooltip">
+                                        <i class="icon-remove"></i>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--suppress WicketForgeHtmlIdInspection -->
+            <div wicket:id="panel"></div>
+        </div>
+    </div>
+
+</wicket:panel>
